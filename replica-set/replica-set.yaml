@@ -1,0 +1,30 @@
+apiVersion: mongodb.com/v1
+kind: MongoDB
+metadata:
+  name: replica-set
+  namespace: leafy-pay
+spec:
+  type: ReplicaSet
+  members: 3
+  version: "8.3.3-ent"
+  persistent: true
+  # OpsManager Config
+  opsManager:
+    configMapRef:
+      name: leafy-org
+  credentials: organization-secret
+  # Disable authentication to be able to manage the database without credentials
+  # do not do this in production environments
+  security:
+    authentication:
+      enabled: false
+---
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: organization-secret
+  namespace: leafy-pay
+stringData:
+  user: "your-public-api-key"
+  publicApiKey: "your-private-api-key"
