@@ -23,7 +23,7 @@ helm install kubernetes-operator mongodb/mongodb-kubernetes \
    --set operator.env=dev \
    --set operator.watchNamespace=leafy-pay \
    --set operator.telemetry.enabled=false \
-   --set operator.podSecurityContext.runAsUser=null
+   --set managedSecurityContext=true
 ```
 
 ## Deploy Ops Manager
