@@ -7,12 +7,12 @@
 - deploy MCK
 - deploy a replica-set
 
-For this project, we will use the namespace `leafy-pay`.
+For this project, we will use the namespace `leafy-pay`
 
 
 ## Install MCK
 To install MCK, the `Telemetry is disabled` since RBACs is required to be cluster-scoped and we don't have this access.  
-Also, `runAsUser` is set to `null` to allow OpwnShift to decide what to user to use, since by default the Operator tries to use user `2000` which is not allowed in OC.
+Also, `runAsUser` is set to `null` to allow OpenShift to decide what user to use, since by default the Operator tries to use the user `2000` which is not allowed in OC for security reasons.
 
 ```
 helm repo add mongodb https://mongodb.github.io/helm-charts
