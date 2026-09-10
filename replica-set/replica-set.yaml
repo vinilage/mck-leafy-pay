@@ -38,5 +38,5 @@ metadata:
   name: organization-secret
   namespace: leafy-pay
 stringData:
-  user: "your-public-api-key"
-  publicApiKey: "your-private-api-key"
+  user: rekezici
+  publicApiKey: c93d99d9-9fe4-4321-a3dc-61b0352306b6
