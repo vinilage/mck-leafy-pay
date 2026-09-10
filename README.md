@@ -100,3 +100,9 @@ Deploy repli-set with TLS enabled:
 ```
 kubectl apply -f ../replica-set/replica-set-tls.yaml
 ```
+
+## Create Database Users
+To authenticate, we need to create database users:
+```
+kubectl apply -f admin.yaml -f user.yaml
+```
