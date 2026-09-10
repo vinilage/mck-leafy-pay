@@ -58,3 +58,45 @@ Use them and build the connection string.
 ```
 mongodb://<external-host-0>:27017,<external-host-1>:27017,<external-host-2>:27017/?replicaSet=replica-set
 ```
+
+## TLS
+
+Create the CA:
+```
+kubectl apply -f certificate-authority.yaml
+````
+
+Create the CA Certificate:
+```
+kubectl get secret leafy-root-secret \
+  -n cert-manager \
+  -o jsonpath="{.data['ca\\.crt']}" | base64 --decode > ca.pem
+```
+
+Create the ConfigMap:
+```
+kubectl create configmap "replica-set-ca-configmap" \
+  -n "leafy-pay" \
+  --from-file=ca-pem=./ca.pem \
+  --from-file=mms-ca.crt=./ca.pem \
+  --from-file=ca.crt=./ca.pem \
+  --dry-run=client -o yaml | kubectl --context "k3d-mongodb-mck-cluster" apply -f -
+```
+
+Create the `leafy-root-secret`:
+```
+kubectl create secret generic leafy-root-secret \
+  -n leafy-pay \
+  --from-file=ca.crt=./ca.pem \
+  --dry-run=client -o yaml | kubectl apply -f -
+```
+
+Issue the Certificates:
+```
+kubectl apply -f certificates.yaml
+```
+
+Deploy repli-set with TLS enabled:
+```
+kubectl apply -f ../replica-set/replica-set-tls.yaml
+```
