@@ -80,7 +80,7 @@ kubectl create configmap "replica-set-ca-configmap" \
   --from-file=ca-pem=./ca.pem \
   --from-file=mms-ca.crt=./ca.pem \
   --from-file=ca.crt=./ca.pem \
-  --dry-run=client -o yaml | kubectl --context "k3d-mongodb-mck-cluster" apply -f -
+  --dry-run=client -o yaml | kubectl apply -f -
 ```
 
 Create the `leafy-root-secret`:
