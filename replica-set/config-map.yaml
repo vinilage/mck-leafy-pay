@@ -9,4 +9,4 @@ data:
   # Optional Parameters
   # projectName: My Ops/Cloud Manager Project
 
-  orgId: 6aa18068edee3a2f1c464ea1
+  orgId: "your-org-id"
